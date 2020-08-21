@@ -10,12 +10,13 @@ import index from '../components/index.vue'
 import login from '../components/login.vue'
 import register from '../components/register.vue'
 import paging from '../components/paging.vue'
+import pagingnull from '../components/pagingnull.vue'
 import details from '../components/details.vue'
 
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     component: index
@@ -29,11 +30,15 @@ Vue.use(VueRouter)
     component: register
   },
   {
-    path: '/paging',
+    path: '/paging/:id',
     component: paging
   },
   {
-    path: '/details',
+    path: '/pagingnull',
+    component: pagingnull
+  },
+  {
+    path: '/details/:id',
     component: details
   },
   {

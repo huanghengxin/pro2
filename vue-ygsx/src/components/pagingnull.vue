@@ -192,7 +192,7 @@
         </li>
       </ul>
     </div>
-    <div class="floor3 mb-3">
+    <div class="floor3 mb-5">
       <button>默认排序</button>
       <button>
         销量
@@ -208,13 +208,13 @@
       </button>
     </div>
     <!--  -->
-    <div class="floor4">
-      <router-link :to="`/details/${pag.id}`">
+    <!-- <div class="floor4">
+      <router-link to="/details">
         <div>
-          <img :src="pag.src" alt />
+          <img :src="pag.src" alt="">
         </div>
       </router-link>
-      <router-link :to="`/details/${pag.id}`">
+      <router-link to="/details">
         <span class="floor4-2">{{pag.title}}</span>
       </router-link>
       <div>¥{{pag.price.toFixed(2)}}</div>
@@ -224,7 +224,7 @@
           <button>暂时无货</button>
         </router-link>
       </div>
-    </div>
+    </div> -->
     <indexFoot></indexFoot>
   </div>
 </template>
@@ -242,16 +242,16 @@ export default {
       yinliao: false,
       riyong: false,
       list: false,
-      pag: [],
+      pag:[]
     };
   },
   mounted() {
     window.addEventListener("scroll", this.scrollToTop);
     let id = this.$route.params.id;
-    this.axios.get("/paging?id=" + id).then((res) => {
+    this.axios.get('/paging?id=' + id).then(res=>{
       this.pag = res.data.result;
-      this.pag.src = require("../assets/imgpaging/" + this.pag.src);
-      // console.log(this.pag);
+      this.pag.src=require('../assets/imgpaging/'+this.pag.src)
+      // console.log(this.pag)
     });
   },
   destroyed() {

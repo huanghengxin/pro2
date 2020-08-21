@@ -151,39 +151,39 @@
       </div>
     </div>
     <div id="f1img">
-      <router-link to="/paging" class="d-block">
+      <router-link :to="`/paging/${images[0].id}`" class="d-block">
         <img :src="images[0].src" alt />
       </router-link>
       <ul>
         <li>
-          <a href="javascript:;">
+          <router-link :to="`/details/${images[1].id}`" class="d-block">
             <img :src="images[1].src" alt />
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="javascript:;">
+          <router-link to="/pagingnull" class="d-block">
             <img :src="images[2].src" alt />
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="javascript:;">
+          <router-link to="/pagingnull" class="d-block">
             <img :src="images[3].src" alt />
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="javascript:;">
+          <router-link to="/pagingnull" class="d-block">
             <img :src="images[4].src" alt />
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="javascript:;">
+          <router-link :to="`/details/${images[2].id}`" class="d-block">
             <img :src="images[5].src" alt />
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="javascript:;">
+          <router-link :to="`/details/${images[3].id}`" class="d-block">
             <img :src="images[6].src" alt />
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -198,39 +198,39 @@
       </div>
     </div>
     <div id="f1img">
-      <a href="javascript:;" class="d-block">
+      <router-link to="/pagingnull" class="d-block">
         <img :src="images[7].src" alt />
-      </a>
+      </router-link>
       <ul>
         <li>
-          <a href="javascript:;">
+          <router-link :to="`/paging/${images[4].id}`" class="d-block">
             <img :src="images[8].src" alt />
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="javascript:;">
+          <router-link to="/pagingnull" class="d-block">
             <img :src="images[9].src" alt />
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="javascript:;">
+          <router-link to="/pagingnull" class="d-block">
             <img :src="images[10].src" alt />
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="javascript:;">
+          <router-link :to="`/paging/${images[5].id}`" class="d-block">
             <img :src="images[11].src" alt />
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="javascript:;">
+          <router-link to="/pagingnull" class="d-block">
             <img :src="images[12].src" alt />
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="javascript:;">
+          <router-link :to="`/paging/${images[6].id}`" class="d-block">
             <img :src="images[13].src" alt />
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>

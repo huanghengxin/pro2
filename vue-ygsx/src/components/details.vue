@@ -109,29 +109,29 @@
     </div>
     <div class="navbar1 my-2">
       <router-link to="/">首页</router-link>
-      <span>></span>
-      <a href="javascript:;">新鲜水果</a>
-      <span>></span>
-      <router-link to="/paging">奇异果/猕猴桃</router-link>
-      <span>></span>
-      <span>智利进口金奇异果8个装礼盒单果约75-90g</span>
+      <span class="mx-2">></span>
+      <a href="javascript:;">{{details.fenleia}}</a>
+      <span class="mx-2">></span>
+      <router-link to="/paging">{{details.fenleib}}</router-link>
+      <span class="mx-2">></span>
+      <span>{{details.guigea}}</span>
     </div>
     <div class="content">
       <div>
-        <img src="../assets/imgdetails/details-big1.jpg" />
-        <img src="../assets/imgdetails/details-big2.jpg" v-show="big2" />
-        <img src="../assets/imgdetails/details-big3.jpg" v-show="big3" />
-        <img src="../assets/imgdetails/details-big4.jpg" v-show="big4" />
+        <img :src="details.src1" />
+        <img :src="details.src2" v-show="big2" />
+        <img :src="details.src3" v-show="big3" />
+        <img :src="details.src4" v-show="big4" />
       </div>
 
       <div class="title">
-        <div>智利进口金奇异果8个装礼盒 单果约75-90g</div>
-        <div>软化香甜细腻软糯 一口惊艳味蕾</div>
+        <div>{{details.titlea}}</div>
+        <div>{{details.titleb}}</div>
       </div>
       <div class="titledown">
         <div class="price">
           <span>价格:</span>
-          <span>¥49.00</span>
+          <span>¥{{details.pricea.toFixed(2)}}</span>
           <div class="more">
             <span>更多商品优惠,尽在易果生鲜APP</span>
             <span>
@@ -153,8 +153,8 @@
       <div class="size">
         <span>规格:</span>
         <ul>
-          <li>¥49.00</li>
-          <li>8个/盒</li>
+          <li>¥{{details.pricea.toFixed(2)}}</li>
+          <li>{{details.guigeb}}</li>
           <span></span>
         </ul>
       </div>
@@ -179,17 +179,17 @@
     </div>
     <div class="small">
       <a href="javascript:;">
-        <img src="../assets/imgdetails/details-big1.jpg" alt />
+        <img :src="details.src1" alt />
       </a>
       <a href="javascript:;" @mouseover="showbig2" @mouseout="notbig2">
-        <img src="../assets/imgdetails/details-big2.jpg" alt />
+        <img :src="details.src2" alt />
       </a>
       <a href="javascript:;" @mouseover="showbig3" @mouseout="notbig3">
-        <img src="../assets/imgdetails/details-big3.jpg" alt />
+        <img :src="details.src3" alt />
       </a>
-      <a href="javascript:;" @mouseover="showbig4" @mouseout="notbig4">
-        <img src="../assets/imgdetails/details-big4.jpg" alt />
-      </a>
+      <!-- <a href="javascript:;" @mouseover="showbig4" @mouseout="notbig4">
+        <img :src="details.src4" alt />
+      </a>-->
     </div>
     <a href="javascript:;" class="kefu"></a>
     <a href="#" class="btnTop" v-show="btnFlag"></a>
@@ -214,10 +214,20 @@ export default {
       big3: false,
       big4: false,
       btnFlag: false,
+      details: [],
     };
   },
   mounted() {
     window.addEventListener("scroll", this.scrollToTop);
+    let id = this.$route.params.id;
+    this.axios.get("/details?id=" + id).then((res) => {
+      this.details = res.data.result;
+      this.details.src1 = require("../assets/imgdetails/" + this.details.src1);
+      this.details.src2 = require("../assets/imgdetails/" + this.details.src2);
+      this.details.src3 = require("../assets/imgdetails/" + this.details.src3);
+      this.details.src4 = require("../assets/imgdetails/" + this.details.src4);
+      console.log(this.details);
+    });
   },
   destroyed() {
     window.removeEventListener("scroll", this.scrollToTop);

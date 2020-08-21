@@ -24,7 +24,7 @@ const pool = mysql.createPool({
 })
 //将cors作为app的中间件使用
 app.use(cors({
-    origin: ['http://localhost:8080', 'http://127.0.0.1:8080']
+    origin: ['http://localhost:8081', 'http://127.0.0.1:8081']
 }))
 //将body作为服务器的中间件使用
 app.use(bodyparser.urlencoded({
@@ -71,14 +71,39 @@ app.post('/login', (req, res) => {
     })
 })
 //获取首页图片
-app.get('/index',(req,res)=>{
-    let sql='select * from shouye';
-    pool.query(sql,(err,result)=>{
-    //   console.log(result)
-      if(err)throw err;
-      res.send({message:'查询成功',code:1,result:result})
+app.get('/index', (req, res) => {
+    let sql = 'select * from shouye';
+    pool.query(sql, (err, result) => {
+        //   console.log(result)
+        if (err) throw err;
+        res.send({ message: '查询成功', code: 1, result: result })
     })
-  })
+})
+//获取分页数据
+app.get('/paging', (req, res) => {
+    //获取地址栏的id参数
+    let cid = req.query.id
+    // console.log(cid)
+    //以id为条件进行文章相关信息的查找操作
+    let sql = `select * from paging where id =?`;
+    pool.query(sql, [cid], (err, result) => {
+        if (err) throw err;
+        res.send({ message: '查询成功', code: 1, result: result[0] })
+    })
+})
+//详情页
+app.get('/details', (req, res) => {
+    //获取地址栏的id参数
+    let cid = req.query.id
+    // console.log(cid)
+    //以id为条件进行文章相关信息的查找操作
+    let sql = `select * from details where id=?`;
+    pool.query(sql, [cid], (err, result) => {
+        if (err) throw err;
+        res.send({ message: '查询成功', code: 1, result: result[0] })
+        // console.log(result)
+    })
+})
 
 //设置端口号
 app.listen(2997);
